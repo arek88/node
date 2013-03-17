@@ -1,6 +1,9 @@
-var http = require('http')
-var port = process.env.PORT || 1337;
-http.createServer(function(req, res) {
+var app = require('express')();
+var server = require('http').Server(app);
+var io = require('socket.io')(server);
+io.on('connection', function(){ 
   res.writeHead(200, { 'Content-Type': 'text/plain' });
   res.end('Hello World\n');
-}).listen(port);
+ });
+server.listen(3000);
+
